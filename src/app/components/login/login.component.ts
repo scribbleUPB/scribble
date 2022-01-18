@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 
 @Component({
-  selector: 'app-demo',
-  templateUrl: './demo.component.html',
-  styleUrls: ['./demo.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class DemoComponent implements OnInit {
+export class LoginComponent implements OnInit {
+
 
   user!: SocialUser;
   loggedIn!: boolean;

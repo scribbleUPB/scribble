@@ -4,14 +4,14 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DemoComponent } from './components/demo/demo.component';
 import { WorkdComponent } from './components/workd/workd.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoComponent,
-    WorkdComponent
+    WorkdComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

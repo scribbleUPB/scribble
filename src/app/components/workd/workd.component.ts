@@ -23,7 +23,7 @@ export class WorkdComponent implements OnInit {
 
   signOut() {
     localStorage.removeItem('google_auth');
-    this.router.navigateByUrl('demo').then();
+    this.router.navigateByUrl('login').then();
   }
 
 }
