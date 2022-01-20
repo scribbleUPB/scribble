@@ -15,7 +15,7 @@ export class AnswerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  oneClick() {
+  triggerIcon() {
     console.log(this.icon);
     if (this.icon === 'bi bi-check') {
       this.icon = 'bi bi-check-all';
