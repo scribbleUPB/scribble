@@ -73,8 +73,18 @@
                             </tr>
                             <tr>
                                 <th scope="row"><i class="bi bi-person-circle"></i> Nombre</th>
-                                <td (click)="oneClick()">
-                                    <i class={{icon}}></i>
+                                <td (click)="oneClick()" class="grey">
+                                    <div [ngSwitch]="updateIcon">
+                                        <div *ngSwitchCase="0">
+                                            <div class="greeN fs-3"><i class={{icon}}></i></div>
+                                        </div>
+                                        <div *ngSwitchCase="1">
+                                            <div class="yellowN fs-3"><i class={{icon}}></i></div>
+                                        </div>
+                                        <div *ngSwitchCase="2">
+                                            <i class={{icon}}></i>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
