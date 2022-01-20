@@ -1,0 +1,45 @@
+<main>
+  <div class="topbar">
+    <h2>Invitations</h2>
+    <div class="topbar">
+      <button class="drop" mat-button [matMenuTriggerFor]="menu">
+        <p>{{selected}}<mat-icon>arrow_drop_down</mat-icon></p>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="setSelected('All')">All</button>
+        <button mat-menu-item (click)="setSelected('Sent')">Sent</button>
+        <button mat-menu-item (click)="setSelected('Received')">Received</button>
+
+        <!-- <button mat-menu-item>Item 2</button> -->
+      </mat-menu>
+      <span class="spacer"></span>
+      <div class="search">
+        <input type="text" [(ngModel)]="inputValue">
+        <mat-icon class="searchButton">search</mat-icon>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="invites">
+    <div *ngFor="let poll of polls">
+    <section *ngIf="poll.name.toLowerCase().includes(inputValue.toLowerCase())">
+      <div class="cont" >
+        <div class="name">
+          <p class="content">{{poll.creator}}</p>
+        </div>
+        <div class="info">
+         <h4>{{poll.name}}</h4>
+         <h5><mat-icon class="bottom">calendar_today</mat-icon> {{poll.options}} options</h5>
+         <h5><mat-icon class="bold, bottom">people</mat-icon> {{poll.invitees}} invitees</h5>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div *ngIf="hasNoResult()">
+    <h5>There are no results matching your filter.</h5>
+  </div>
+
+</div>
+
+</main>

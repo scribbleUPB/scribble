@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <span class="spacer"></span>
+  <div class="head">
+    <button mat-flat-button  routerLink="/dashboard" routerLinkActive="active" ><span class="title">Scribble</span></button>
+  </div>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>account_circle</mat-icon>
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" xPosition="after">
+    <p class="menuItem">Signed in as: {{ user.email }}</p>
+    <button mat-menu-item class="sign" (click)="signOut()">Logout</button>
+    <!-- <button mat-menu-item>Item 2</button> -->
+  </mat-menu>
+  <button mat-button class="create" routerLink="/create" routerLinkActive="active">+ Create</button>
+  <span class="spacer"></span>
+
+
+</mat-toolbar>
+<app-invitations></app-invitations>
+
