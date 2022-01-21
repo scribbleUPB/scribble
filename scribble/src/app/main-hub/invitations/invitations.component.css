@@ -1,0 +1,150 @@
+main{
+    width: 70%;
+    margin: 2em auto;
+    padding: 2em;
+    min-height: 200px;
+    background-color: white;
+    border: 1px solid rgb(201, 201, 201);
+    border-radius: 4px;
+
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+h2{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: large;
+  margin: 0.5em auto;
+  padding: 0 2em 0 0.5em;
+
+}
+.topbar{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+/*
+mat-icon{
+  margin: auto 0;
+  font-size: 1.3em;
+  padding: 0 0.1em;
+} */
+
+mat-icon{
+  padding-bottom: 0.1em;
+  padding-left: 0.1em;
+  vertical-align: middle;
+}
+p{
+  margin: auto auto;
+}
+button.drop{
+  margin: 0 0.5em;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 4px;
+  height: 50px;
+}
+
+.search{
+  display: flex;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 4px;
+  height: fit-content;
+  margin: 0.5em 0;
+}
+.search:active, .search:hover{
+  border: 1.5px solid #30475E;
+
+}
+
+input{
+  border: none;
+  margin: 0 0.5em;
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+.searchButton{
+  padding: 0.1em 0;
+  margin: 0;
+  color: rgb(121, 121, 121);
+}
+
+.invites{
+  margin: 1.5em 0;
+}
+
+
+
+section{
+
+  margin: 0 auto;
+  border: 1px solid rgb(161, 161, 161);
+  border-radius: 2px;
+  margin-bottom: 1em;
+}
+
+section:hover{
+  background-color: rgb(250, 250, 250);
+  transition: 200ms;
+
+}
+
+section:active{
+  border: 1.5px solid #F05454;
+  background-color: rgb(250, 250, 250);
+  transition: 200ms;
+  box-shadow: #e29d9d 0px 1px 3px;
+
+
+}
+
+.cont{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 1em 0;
+}
+ h4{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: large;
+  margin: 0.4em auto 0.4em auto;
+  padding: 0 2em 0 0.5em;
+}
+.name{
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  margin: auto 1em auto 2em;
+  background-color: #F05454;
+}
+.content{
+  font-family: 'Raleway', sans-serif;
+  margin: 0.5em 0;
+  color: white;
+  text-align: center;
+}
+
+h5{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size:1em;
+  margin:  auto;
+  padding: 0 2em 0 0.5em;
+}
+.bold{
+  font-weight: 600;
+}
+
+ .bottom{
+  font-size: large;
+  vertical-align: top;
+}
+
+
