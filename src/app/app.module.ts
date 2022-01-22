@@ -32,6 +32,7 @@ import { InvitationsComponent } from './main-hub/invitations/invitations.compone
 import { FirstScreenComponent } from './poll-creation/first-screen/first-screen.component';
 import { LoginComponent } from './login/login/login.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { AnswerComponent } from './poll-creation/answer/answer.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
     HeaderComponent,
     InvitationsComponent,
     FirstScreenComponent,
-    LoginComponent
+    LoginComponent,
+    AnswerComponent
   ],
   imports: [
     BrowserModule,
