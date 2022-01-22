@@ -30,8 +30,8 @@ export class FirstScreenComponent implements OnInit, OnDestroy {
   options: option[] = [];
   private dateSub!: Subscription
   private textSub!: Subscription
-  title:string='';
-  desc:string='';
+  title: string = '';
+  desc: string = '';
   private loggedUser!: User
 
 
@@ -40,7 +40,7 @@ export class FirstScreenComponent implements OnInit, OnDestroy {
   @ViewChild('cal') calendar: MatCalendar<Date> | undefined;
 
 
-  constructor(private router: Router, private dateService: DateService, private textService:TextService, private _formBuilder: FormBuilder, private pollService:PollSaveService, private userAuth:UserAuthService) { }
+  constructor(private router: Router, private dateService: DateService, private textService: TextService, private _formBuilder: FormBuilder, private pollService: PollSaveService, private userAuth: UserAuthService) { }
   ngOnDestroy() {
     this.dateSub.unsubscribe()
     this.textSub.unsubscribe()
@@ -49,8 +49,8 @@ export class FirstScreenComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.userAuth.getAuthStatusListener().subscribe(u=>{
-      this.loggedUser=u;
+    this.userAuth.getAuthStatusListener().subscribe(u => {
+      this.loggedUser = u;
     })
 
     const storage = localStorage.getItem('google_auth')
@@ -85,9 +85,9 @@ export class FirstScreenComponent implements OnInit, OnDestroy {
       })
 
     this.textSub = this.textService.getOptionListener()
-    .subscribe((options:option[])=>{
-      this.options=options;
-    })
+      .subscribe((options: option[]) => {
+        this.options = options;
+      })
 
     let o: option = {
       content: ''
@@ -142,12 +142,12 @@ export class FirstScreenComponent implements OnInit, OnDestroy {
     this.textService.saveOption(o)
   }
 
-  deleteOption(i:number){
+  deleteOption(i: number) {
     this.textService.deleteOption(i)
   }
 
-  setOptionContent(opt:HTMLInputElement, i:number){
-    this.textService.setOptionContent(opt.value,i)
+  setOptionContent(opt: HTMLInputElement, i: number) {
+    this.textService.setOptionContent(opt.value, i)
   }
 
   trackByFn(index: number, treatment: any) {
@@ -195,7 +195,7 @@ export class FirstScreenComponent implements OnInit, OnDestroy {
 
 
 
-  createPoll(){
+  createPoll() {
     // console.log(this.firstFormGroup.controls['firstCtrl'].value)
     // console.log(this.firstFormGroup.controls['secondCtrl'].value)
     // console.log(this.secondFormGroup.controls['needBeCtrl'].value)
@@ -204,38 +204,40 @@ export class FirstScreenComponent implements OnInit, OnDestroy {
     // console.log(this.secondFormGroup.controls['hiddenCtrl'].value)
     // console.log(this.secondFormGroup.controls['deadlineCtrl'].value)
 
-    if(this.options.length>1 || this.options[0].content!='' ){
-      let filteredOptions=this.options.filter(o=>o.content!=='');
-      let textpoll:poll={
-        creator:this.user.email,
-        title:this.firstFormGroup.controls['firstCtrl'].value,
-        description:this.firstFormGroup.controls['secondCtrl'].value,
-        textOptions:filteredOptions,
-        needBe:this.secondFormGroup.controls['needBeCtrl'].value,
-        numberVote:this.secondFormGroup.controls['numberCtrl'].value,
-        singleVote:this.secondFormGroup.controls['singleCtrl'].value,
-        hidden:this.secondFormGroup.controls['hiddenCtrl'].value,
-        deadline:this.secondFormGroup.controls['deadlineCtrl'].value,
-        invitees:[]
+    if (this.options.length > 1 || this.options[0].content != '') {
+      let filteredOptions = this.options.filter(o => o.content !== '');
+      let textpoll: poll = {
+        creator: this.user.email,
+        title: this.firstFormGroup.controls['firstCtrl'].value,
+        description: this.firstFormGroup.controls['secondCtrl'].value,
+        textOptions: filteredOptions,
+        needBe: this.secondFormGroup.controls['needBeCtrl'].value,
+        numberVote: this.secondFormGroup.controls['numberCtrl'].value,
+        singleVote: this.secondFormGroup.controls['singleCtrl'].value,
+        hidden: this.secondFormGroup.controls['hiddenCtrl'].value,
+        deadline: this.secondFormGroup.controls['deadlineCtrl'].value,
+        invitees: []
       }
       this.pollService.savePoll(textpoll, this.user.email);
     } else {
       console.log(this.fullerDates)
-      let calendarPoll:poll={
-        creator:this.user.email,
-        title:this.firstFormGroup.controls['firstCtrl'].value,
-        description:this.firstFormGroup.controls['secondCtrl'].value,
-        calendarOptions:this.fullerDates,
-        needBe:this.secondFormGroup.controls['needBeCtrl'].value ===true,
-        numberVote:this.secondFormGroup.controls['numberCtrl'].value ===true,
-        singleVote:this.secondFormGroup.controls['singleCtrl'].value===true,
-        hidden:this.secondFormGroup.controls['hiddenCtrl'].value===true,
-        deadline:this.secondFormGroup.controls['deadlineCtrl'].value===true,
-        invitees:[]
+      let calendarPoll: poll = {
+        creator: this.user.email,
+        title: this.firstFormGroup.controls['firstCtrl'].value,
+        description: this.firstFormGroup.controls['secondCtrl'].value,
+        calendarOptions: this.fullerDates,
+        needBe: this.secondFormGroup.controls['needBeCtrl'].value === true,
+        numberVote: this.secondFormGroup.controls['numberCtrl'].value === true,
+        singleVote: this.secondFormGroup.controls['singleCtrl'].value === true,
+        hidden: this.secondFormGroup.controls['hiddenCtrl'].value === true,
+        deadline: this.secondFormGroup.controls['deadlineCtrl'].value === true,
+        invitees: []
       }
       this.pollService.savePoll(calendarPoll, this.user.email);
 
     }
+
+    this.router.navigateByUrl('dashboard').then();
 
   }
 
