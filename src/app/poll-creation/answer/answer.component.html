@@ -20,9 +20,11 @@
                                         <i class="bi bi-three-dots-vertical"></i>Más
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        <li><a class="dropdown-item">Editar</a></li>
+                                        <li><a class="dropdown-item">Exportar a PDF</a></li>
+                                        <li><a class="dropdown-item">Imprimir</a></li>
+                                        <li><a class="dropdown-item">Eliminar participantes</a></li>
+                                        <li><a class="dropdown-item">Eliminar encuesta</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -30,8 +32,11 @@
                     </div>
                 </div>
                 <div class="card-body d-flex flex-column align-items-center">
-                    <h4>Título de encuesta</h4>
-                    <p>por Nombre del creador</p>
+                    <h4>{{dataPoll.title}}</h4>
+                    <p>por {{dataPoll.creator}}</p>
+                    <div *ngIf="dataPoll.description !== null || undefined">
+                        <p>{{dataPoll.description}}</p>
+                    </div>
                     <div class="row">
                         <div class="col-12 col-sm">
                             <h5 class="text-muted">
@@ -50,13 +55,14 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Opcion</th>
+                                <th scope="col" *ngFor="let option of dataPoll.textOptions">{{option.content}}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row"><i class="bi bi-person-circle"></i> Usuario</th>
-                                <td>check</td>
+                                <th scope="row"><i class="bi bi-person-circle"></i> {{dataPoll.participants}}
+                                    Participantes</th>
+                                <td *ngFor="let vote of dataPoll.textOptions">{{vote.votes}}</td>
                             </tr>
                             <tr>
                                 <th scope="row"><i class="bi bi-person-circle"></i> Nombre</th>

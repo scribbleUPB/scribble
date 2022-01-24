@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="invites">
-    <div *ngFor="let poll of userPolls">
+    <div *ngFor="let poll of userPolls" (click)="goAnswer(poll._id)">
       <section *ngIf="poll.title.toLowerCase().includes(inputValue.toLowerCase())">
         <div class="cont">
           <div class="name">

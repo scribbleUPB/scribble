@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: InvitationsComponent },
   { path: 'create', component: FirstScreenComponent },
-  { path: 'answer', component: AnswerComponent },
+  { path: 'answer/:id', component: AnswerComponent },
 ];
 
 @NgModule({

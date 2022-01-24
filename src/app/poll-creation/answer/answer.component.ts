@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { poll } from 'src/app/models/poll.model';
+import { PollSaveService } from 'src/app/services/poll-save.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-answer',
@@ -9,10 +13,17 @@ export class AnswerComponent implements OnInit {
 
   icon!: string;
   updateIcon!: number;
+  dataPoll: any = {};
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private pollService: PollSaveService) { }
 
   ngOnInit(): void {
+    let pollId = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(pollId);
+    this.pollService.getPollById(pollId).subscribe(data => {
+      console.log(data);
+      this.dataPoll = data;
+    })
   }
 
   triggerIcon() {
