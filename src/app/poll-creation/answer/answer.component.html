@@ -32,22 +32,22 @@
                     </div>
                 </div>
                 <div class="card-body d-flex flex-column align-items-center">
-                    <h4>{{dataPoll.title}}</h4>
+                    <h2 class="fw-bold">{{dataPoll.title}}</h2>
                     <p>por {{dataPoll.creator}}</p>
                     <div *ngIf="dataPoll.description !== null || undefined">
                         <p>{{dataPoll.description}}</p>
                     </div>
                     <div class="row">
                         <div class="col-12 col-sm">
-                            <h5 class="text-muted">
+                            <h3 class="text-muted">
                                 <i class="bi bi-eye-slash-fill"></i>
                                 Solo usted puede ver todos los votos y comentarios
-                            </h5>
+                            </h3>
                             <br>
-                            <h5 class="text-muted">
+                            <h3 class="text-muted">
                                 <i class="bi bi-check-all"></i>
                                 Marca las casillas dos veces para seleccionar el voto "Sí, si es necesario"
-                            </h5>
+                            </h3>
                             <br>
                         </div>
                     </div>
@@ -60,19 +60,23 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row"><i class="bi bi-person-circle"></i> {{dataPoll.participants}}
-                                    Participantes</th>
-                                <td *ngFor="let vote of dataPoll.textOptions">{{vote.votes}}</td>
+                                <td>{{dataPoll.participants}} Participantes</td>
+                                <td *ngFor="let vote of dataPoll.textOptions">{{vote.votes}}
+                                    <div *ngIf="vote <= 1">
+                                        <p>Voto</p>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row"><i class="bi bi-person-circle"></i> Nombre</th>
-                                <td (click)="triggerIcon()" class="grey">
+                                <td (click)="triggerIcon(i)" class="grey" *ngFor="let option of dataPoll.textOptions; let i = index">
+                                    {{i}}
                                     <div [ngSwitch]="updateIcon">
                                         <div *ngSwitchCase="0">
-                                            <div class="greeN fs-3"><i class={{icon}}></i></div>
+                                            <div class="greeN fs-4"><i class={{icon}}></i></div>
                                         </div>
                                         <div *ngSwitchCase="1">
-                                            <div class="yellowN fs-3"><i class={{icon}}></i></div>
+                                            <div class="yellowN fs-4"><i class={{icon}}></i></div>
                                         </div>
                                         <div *ngSwitchCase="2">
                                             <i class={{icon}}></i>

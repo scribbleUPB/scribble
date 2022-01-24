@@ -26,20 +26,20 @@ export class AnswerComponent implements OnInit {
     })
   }
 
-  triggerIcon() {
+  triggerIcon(index: any) {
     console.log(this.icon);
     if (this.icon === 'bi bi-check') {
       this.icon = 'bi bi-check-all';
       this.updateIcon = 0;
-      console.log('click ' + this.icon + this.updateIcon);
+      console.log('click ' + this.icon + this.updateIcon + index);
     } else if (this.icon === undefined || this.icon === '') {
       this.icon = 'bi bi-check';
       this.updateIcon = 1;
-      console.log('click ' + this.icon + this.updateIcon);
+      console.log('click ' + this.icon + this.updateIcon + index);
     } else {
       this.icon = '';
       this.updateIcon = 2;
-      console.log('click ' + this.icon + this.updateIcon);
+      console.log('click ' + this.icon + this.updateIcon + index);
     }
   }
 }
