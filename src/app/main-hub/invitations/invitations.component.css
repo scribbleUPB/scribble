@@ -146,5 +146,12 @@ h5{
   font-size: large;
   vertical-align: top;
 }
-
-
+.redN{
+  color: red;
+}
+.greeN {
+  color: #9AE66E;
+}
+.yellowN {
+  color: #ffc600;
+}
