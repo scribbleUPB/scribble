@@ -4,7 +4,8 @@ import { UserAuthService } from 'src/app/services/user-auth.service';
 import { poll } from 'src/app/models/poll.model';
 import { Router } from '@angular/router';
 import { PollSaveService } from 'src/app/services/poll-save.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-invitations',
@@ -70,7 +71,7 @@ export class InvitationsComponent implements OnInit {
   }
 
   deletePoll(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.pollService.deletePollById(result).subscribe((data) => {
         console.log(data);
       })
