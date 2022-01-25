@@ -3,6 +3,9 @@ import { User } from 'src/app/models/user.model';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { poll } from 'src/app/models/poll.model';
 import { Router } from '@angular/router';
+import { PollSaveService } from 'src/app/services/poll-save.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-invitations',
   templateUrl: './invitations.component.html',
@@ -12,7 +15,12 @@ export class InvitationsComponent implements OnInit {
   private loggedUser!: User
   userPolls: poll[] = []
 
-  constructor(private userAuth: UserAuthService, private router: Router) { }
+  constructor(
+    private userAuth: UserAuthService,
+    private router: Router,
+    private pollService: PollSaveService,
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit(): void {
     this.userAuth.getAuthStatusListener().subscribe(u => {
@@ -61,5 +69,12 @@ export class InvitationsComponent implements OnInit {
     this.router.navigate(['answer', id]);
   }
 
+  deletePoll(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.pollService.deletePollById(result).subscribe((data) => {
+        console.log(data);
+      })
+    })
+  }
 
 }

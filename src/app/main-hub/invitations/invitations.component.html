@@ -22,10 +22,10 @@
     </div>
   </div>
   <div class="invites">
-    <div *ngFor="let poll of userPolls" (click)="goAnswer(poll._id)">
+    <div *ngFor="let poll of userPolls">
       <section *ngIf="poll.title.toLowerCase().includes(inputValue.toLowerCase())">
         <div class="row">
-          <div class="col-10 col-sm-10">
+          <div class="col-10 col-sm-10" (click)="goAnswer(poll._id)">
             <div class="cont">
               <div class="name">
                 <p class="content">{{poll.creator[0].toUpperCase()}}</p>
@@ -47,12 +47,30 @@
           </div>
           <div class="col-2 col-sm-2">
             <div class="cont">
-              <button class="btn btn-link btn-sm greeN" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver"><i
-                  class="bi bi-newspaper"></i></button>
-              <button class="btn btn-link btn-sm yellowN" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"><i
-                  class="bi bi-pencil"></i></button>
-              <button class="btn btn-link btn-sm redN" data-bs-toggle="tooltip" data-bs-placement="top"
-                title="Eliminar"><i class="bi bi-trash"></i></button>
+              <button class="btn btn-lg btn-sm greeN" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver"><i
+                  class="bi bi-newspaper fs-4"></i></button>
+              <button class="btn btn-lg btn-sm yellowN" data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Editar"><i class="bi bi-pencil fs-4"></i></button>
+              <button class="btn btn-link btn-lg btn-sm redN fs-4" data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Eliminar" (click)="deletePoll(content)"><i class="bi bi-trash"></i></button>
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">
+                    Eliminar la encuesta
+                  </h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>¿ Esta seguro de eliminar la encuesta ?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-danger" (click)="modal.close(poll._id)">
+                    Eliminar
+                  </button>
+                </div>
+              </ng-template>
             </div>
           </div>
         </div>

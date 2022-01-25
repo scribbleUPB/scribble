@@ -10,7 +10,7 @@ import { poll } from '../models/poll.model';
 export class PollSaveService {
   private polls: poll[] = [];
   private fetchPolls = new Subject<poll[]>();
-  url: string = "http://localhost:3000/api/";
+  private url: string = "http://localhost:3000/api/";
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -28,6 +28,11 @@ export class PollSaveService {
   getPollById(id: any) {
     let urlV = this.url + `poll/${id}`;
     return this.http.get(urlV);
+  }
+
+  deletePollById(id: any) {
+    let urlV = this.url + `poll-delete/${id}`;
+    return this.http.delete(urlV);
   }
 
   // saveTextPoll(poll:poll){

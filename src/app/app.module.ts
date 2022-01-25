@@ -33,6 +33,7 @@ import { FirstScreenComponent } from './poll-creation/first-screen/first-screen.
 import { LoginComponent } from './login/login/login.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { AnswerComponent } from './poll-creation/answer/answer.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { AnswerComponent } from './poll-creation/answer/answer.component';
     NgxMultipleDatesModule,
     MatCheckboxModule,
     SocialLoginModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
 
 
 
