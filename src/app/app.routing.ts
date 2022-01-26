@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'dashboard', component: InvitationsComponent },
   { path: 'create', component: FirstScreenComponent },
   { path: 'answer/:id', component: AnswerComponent },
-  { path: 'edit/:id', component: EditComponent }
+  { path: 'poll-edit/:id', component: EditComponent }
 ];
 
 @NgModule({

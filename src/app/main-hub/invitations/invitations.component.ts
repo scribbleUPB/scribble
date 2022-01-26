@@ -70,6 +70,10 @@ export class InvitationsComponent implements OnInit {
     this.router.navigate(['answer', id]);
   }
 
+  goEdit(id: any) {
+    this.router.navigate(['poll-edit', id]);
+  }
+
   deletePoll(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.pollService.deletePollById(result).subscribe((data) => {

@@ -34,6 +34,7 @@ import { LoginComponent } from './login/login/login.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { AnswerComponent } from './poll-creation/answer/answer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditComponent } from './poll-creation/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     InvitationsComponent,
     FirstScreenComponent,
     LoginComponent,
-    AnswerComponent
+    AnswerComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
