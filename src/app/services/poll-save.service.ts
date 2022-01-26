@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { poll } from '../models/poll.model';
 
 @Injectable({
@@ -10,13 +11,12 @@ import { poll } from '../models/poll.model';
 export class PollSaveService {
   private polls: poll[] = [];
   private fetchPolls = new Subject<poll[]>();
-  private url: string = "http://localhost:3000/api/";
 
   constructor(private http: HttpClient, private router: Router) { }
 
   savePoll(poll: poll, email: string) {
     let data = { poll, email }
-    this.http.post("http://localhost:3000/api/polls", data)
+    this.http.post(`${environment.apiUrl}polls`, data)
       .subscribe(res => {
         console.log(res)
       })
@@ -26,13 +26,11 @@ export class PollSaveService {
   }
 
   getPollById(id: any) {
-    let urlV = this.url + `poll/${id}`;
-    return this.http.get(urlV);
+    return this.http.get(`${environment.apiUrl}poll/${id}`);
   }
 
   deletePollById(id: any) {
-    let urlV = this.url + `poll-delete/${id}`;
-    return this.http.delete(urlV);
+    return this.http.delete(`${environment.apiUrl}poll-delete/${id}`);
   }
 
   // saveTextPoll(poll:poll){

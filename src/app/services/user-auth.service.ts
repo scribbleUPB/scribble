@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -15,7 +16,7 @@ export class UserAuthService {
 
   userFetch(name:string,email:string){
     let userData={name,email}
-    this.http.post<{message:string,user:any}>("http://localhost:3000/api/user", userData)
+    this.http.post<{message:string,user:any}>(`${environment.apiUrl}user`, userData)
     .pipe(map(resp=>{
      const u:User={
        _id:resp.user._id,
