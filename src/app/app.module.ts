@@ -35,6 +35,7 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
 import { AnswerComponent } from './poll-creation/answer/answer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditComponent } from './poll-creation/edit/edit.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { EditComponent } from './poll-creation/edit/edit.component';
     FirstScreenComponent,
     LoginComponent,
     AnswerComponent,
-    EditComponent
+    EditComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
