@@ -85,9 +85,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
               //Id for Skynet
-              '531547908712-jsrg3foj9hh7gm273c22q59c7str88b6.apps.googleusercontent.com'
+              //'531547908712-jsrg3foj9hh7gm273c22q59c7str88b6.apps.googleusercontent.com'
               //Id for local work
-              //'531547908712-2q501cu5jaf3re251m9vqcqmccmfsch6.apps.googleusercontent.com'
+              '531547908712-2q501cu5jaf3re251m9vqcqmccmfsch6.apps.googleusercontent.com'
             )
           }
         ],
