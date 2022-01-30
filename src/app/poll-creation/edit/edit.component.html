@@ -1,10 +1,14 @@
+<div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Felicidades!</strong> Se edito los datos de manera correcta.
+    <button (click)="closeAlert()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 <div class="container-fluid">
     <div class="row align-items-center vh-100">
         <div class="col-sm col">
             <div class="card shadow border">
                 <app-header></app-header>
                 <div class="card-body d-flex flex-column align-items-center">
-                    <form [formGroup]="editPoll">
+                    <form [formGroup]="editPoll" (ngSubmit)="patchPoll()">
                         <div class="form-group text-center">
                             <div class="row">
                                 <div class="col-5">

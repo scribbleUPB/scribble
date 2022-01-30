@@ -13,6 +13,7 @@ import { PollSaveService } from 'src/app/services/poll-save.service';
 export class EditComponent implements OnInit {
 
   options: any[] = [];
+  alert: boolean = false;
 
   constructor(private activeRouter: ActivatedRoute,
     private router: Router, private pollService: PollSaveService) { }
@@ -39,9 +40,10 @@ export class EditComponent implements OnInit {
         'title': this.pollData.title,
         'description': this.pollData.description,
         'calendarOptions': this.pollData.calendarOptions,
-        'textOptions': this.pollData.textOptions?.map(option => {
-          return this.options.push(option.content)
-        }),
+        'textOptions': this.pollData.textOptions,
+        /*?.map(option => {
+          return this.options.push(option.content.toString())
+        })*/
         'needBe': this.pollData.needBe,
         'numberVote': this.pollData.numberVote,
         'singleVote': this.pollData.singleVote,
@@ -53,4 +55,17 @@ export class EditComponent implements OnInit {
     })
   }
 
+  patchPoll() {
+    this.pollService.patchPollById(this.activeRouter.snapshot.paramMap.get('id'),
+      this.editPoll.value).subscribe(result => {
+        if (!result) console.log('error');
+        console.log(result)
+        this.alert = true;
+        this.router.navigate(['dashboard'])
+      })
+  }
+
+  closeAlert() {
+    this.alert = false
+  }
 }

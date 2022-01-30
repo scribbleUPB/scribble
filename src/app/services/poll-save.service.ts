@@ -33,6 +33,10 @@ export class PollSaveService {
     return this.http.delete(`${environment.apiUrl}poll-delete/${id}`);
   }
 
+  patchPollById(id: any, form: any) {
+    return this.http.patch(`${environment.apiUrl}poll-edit/${id}`, form)
+  }
+
   // saveTextPoll(poll:poll){
   //   this.http.post("http://localhost:3000/api/polls", poll)
   //   .subscribe(res=>{
