@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { PollSaveService } from 'src/app/services/poll-save.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-invitations',
@@ -20,7 +21,8 @@ export class InvitationsComponent implements OnInit {
     private userAuth: UserAuthService,
     private router: Router,
     private pollService: PollSaveService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -79,7 +81,17 @@ export class InvitationsComponent implements OnInit {
       this.pollService.deletePollById(result).subscribe((data) => {
         console.log(data);
       })
+      this.openSnackBar()
     })
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Se elimino la encuesta', 'X', {
+      duration: 3000,
+      panelClass: 'delete',
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
   }
 
 }

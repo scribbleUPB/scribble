@@ -25,6 +25,7 @@ import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 //
 import { HttpClientModule } from '@angular/common/http';
 
@@ -70,10 +71,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatCheckboxModule,
     SocialLoginModule,
     HttpClientModule,
-    NgbModule
-
-
-
+    NgbModule,
+    MatSnackBarModule
   ],
   providers: [
     {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { option } from 'src/app/models/option.model';
 import { poll } from 'src/app/models/poll.model';
@@ -13,10 +14,10 @@ import { PollSaveService } from 'src/app/services/poll-save.service';
 export class EditComponent implements OnInit {
 
   options: any[] = [];
-  alert: boolean = false;
 
   constructor(private activeRouter: ActivatedRoute,
-    private router: Router, private pollService: PollSaveService) { }
+    private router: Router, private pollService: PollSaveService,
+    private _snackBar: MatSnackBar) { }
 
   pollData!: poll;
   editPoll = new FormGroup({
@@ -60,12 +61,17 @@ export class EditComponent implements OnInit {
       this.editPoll.value).subscribe(result => {
         if (!result) console.log('error');
         console.log(result)
-        this.alert = true;
         this.router.navigate(['dashboard'])
+        this.openSnackBar();
       })
   }
 
-  closeAlert() {
-    this.alert = false
+  openSnackBar() {
+    this._snackBar.open('Se edito la encuesta', 'X', {
+      duration: 3000,
+      panelClass: 'success',
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
   }
 }
