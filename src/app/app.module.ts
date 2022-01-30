@@ -33,7 +33,7 @@ import { InvitationsComponent } from './main-hub/invitations/invitations.compone
 import { FirstScreenComponent } from './poll-creation/first-screen/first-screen.component';
 import { LoginComponent } from './login/login/login.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
-import { AnswerComponent } from './poll-creation/answer/answer.component';
+import { ViewComponent } from './poll-creation/view/view.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditComponent } from './poll-creation/edit/edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -45,7 +45,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     InvitationsComponent,
     FirstScreenComponent,
     LoginComponent,
-    AnswerComponent,
+    ViewComponent,
     EditComponent,
     PageNotFoundComponent
   ],

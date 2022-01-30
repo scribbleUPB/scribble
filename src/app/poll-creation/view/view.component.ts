@@ -3,11 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PollSaveService } from 'src/app/services/poll-save.service';
 
 @Component({
-  selector: 'app-answer',
-  templateUrl: './answer.component.html',
-  styleUrls: ['./answer.component.css']
+  selector: 'app-view',
+  templateUrl: './view.component.html',
+  styleUrls:['./view.component.css']
 })
-export class AnswerComponent implements OnInit {
+export class ViewComponent implements OnInit {
 
   icon!: string;
   updateIcon!: number;

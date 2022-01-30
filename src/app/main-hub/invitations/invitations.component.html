@@ -25,7 +25,7 @@
     <div *ngFor="let poll of userPolls">
       <section *ngIf="poll.title.toLowerCase().includes(inputValue.toLowerCase())">
         <div class="row">
-          <div class="col-10 col-sm-10" (click)="goAnswer(poll._id)">
+          <div class="col-10 col-sm-10" (click)="goView(poll._id)">
             <div class="cont">
               <div class="name">
                 <p class="content">{{poll.creator[0].toUpperCase()}}</p>
@@ -48,7 +48,7 @@
           <div class="col-2 col-sm-2">
             <div class="cont">
               <button class="btn btn-lg btn-sm greeN" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver"><i
-                  class="bi bi-newspaper fs-4"></i></button>
+                  class="bi bi-newspaper fs-4" (click)="goView(poll._id)"></i></button>
               <button class="btn btn-lg btn-sm yellowN" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
                 (click)="goEdit(poll._id)"><i class="bi bi-pencil fs-4"></i></button>
               <button class="btn btn-link btn-lg btn-sm redN fs-4" data-bs-toggle="tooltip" data-bs-placement="top"

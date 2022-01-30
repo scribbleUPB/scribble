@@ -68,8 +68,8 @@ export class InvitationsComponent implements OnInit {
     return this.polls.filter(p => p.name.toLowerCase().includes(this.inputValue.toLowerCase())).length === 0;
   }
 
-  goAnswer(id: any) {
-    this.router.navigate(['answer', id]);
+  goView(id: any) {
+    this.router.navigate(['poll-view', id]);
   }
 
   goEdit(id: any) {

@@ -26,7 +26,7 @@ export class PollSaveService {
   }
 
   getPollById(id: any) {
-    return this.http.get(`${environment.apiUrl}poll/${id}`);
+    return this.http.get(`${environment.apiUrl}poll-view/${id}`);
   }
 
   deletePollById(id: any) {
