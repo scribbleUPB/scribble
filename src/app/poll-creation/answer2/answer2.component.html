@@ -22,7 +22,8 @@
           <div class="white justify-content-center">
             <div *ngIf="showInvite" class="row d-flex align-items-center">
               <div class="col">
-                <button class="btn btn-outline-light button-solid btn-lg shadow-none">
+                <button class="btn btn-outline-light button-solid btn-lg shadow-none" (click)="openSnackBar()"
+                  [cdkCopyToClipboard]="copyLink()">
                   <i class="bi bi-person-plus-fill"></i> Copy Invite Link
                 </button>
               </div>
@@ -74,27 +75,20 @@
                 <th scope="col" *ngFor="let option of dataPoll.textOptions">{{option.content}}</th>
 
               </tr>
-              <tr>
+              <tr *ngIf="showV">
                 <th scope="col"> Votes</th>
-                <!-- <th scope="col" *ngFor="let option of dataPoll.textOptions">{{option.content}}</th> -->
-
+                <th scope="col" class="score" *ngFor="let vote of votes">{{vote}}</th>
               </tr>
 
             </thead>
-            <!-- <thead *ngIf="calenPoll">
-              <tr>
-                <th scope="col"> {{answers.responses.length}} Participants</th>
 
-                <th scope="col" *ngFor="let option of calendarHeaders">{{option}}</th>
-              </tr>
-            </thead> -->
             <tbody>
               <tr class="names" *ngFor="let item of answers.responses; let j = index">
                 <th scope="row" class="names" *ngIf="item.user" [ngClass]="{'grey': j === index}"> {{item.user.name}}
                 </th>
                 <th scope="row" class="names" *ngIf="!item.user" [ngClass]="{'grey': j === index}">
                   <mat-form-field>
-                    <mat-label *ngIf="j==index">Enter your name</mat-label>
+                    <mat-label *ngIf="j==index">Enter your name (Opt)</mat-label>
                     <input matInput [(ngModel)]="item.name" [disabled]='j!==index'>
                   </mat-form-field>
                 </th>
@@ -123,6 +117,10 @@
                 <th scope="col"> {{answers.responses.length}} Participants</th>
 
                 <th scope="col" *ngFor="let option of calendarHeaders">{{option}}</th>
+              </tr>
+              <tr *ngIf="showV">
+                <th scope="col"> Votes</th>
+                <th scope="col" class="score" *ngFor="let vote of votes">{{vote}}</th>
               </tr>
             </thead>
             <tbody>
@@ -157,7 +155,9 @@
         </div>
         <div class="saveDiv">
           <button mat-button class="save" (click)="onSave()" *ngIf="enableSave"> Send</button>
-          <!-- <button mat-button class="save" (click)="onSave()" *ngIf="enableSave"> Update</button> -->
+          <button mat-button class="save" (click)="showVotes()" *ngIf="!showV"> Show Votes</button>
+          <button mat-button class="save" (click)="showVotes()" *ngIf="showV"> Hide Votes</button>
+
 
         </div>
         <div class="card-footer text-center">
