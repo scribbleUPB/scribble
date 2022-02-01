@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { option } from 'src/app/models/option.model';
@@ -13,7 +13,7 @@ import { PollSaveService } from 'src/app/services/poll-save.service';
 })
 export class EditComponent implements OnInit {
 
-  options: option[] = [];
+  options: any[] = [];
   filteredOption!: any
 
   constructor(private activeRouter: ActivatedRoute,

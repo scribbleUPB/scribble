@@ -237,7 +237,9 @@ export class FirstScreenComponent implements OnInit, OnDestroy {
 
     }
 
-    this.router.navigateByUrl('dashboard').then();
+    this.router.navigateByUrl('dashboard').then(
+
+    );
 
   }
 

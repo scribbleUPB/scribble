@@ -14,14 +14,14 @@ export class LoginComponent implements OnInit {
 
   user!: SocialUser;
   loggedIn!: boolean;
-  dis!:boolean
-  loggedUser!:User;
+  dis!: boolean
+  loggedUser!: User;
 
 
-  constructor(private authService: SocialAuthService, private router: Router, private userAuth:UserAuthService) { }
+  constructor(private authService: SocialAuthService, private router: Router, private userAuth: UserAuthService) { }
 
   ngOnInit(): void {
-    this.dis=false;
+    this.dis = false;
 
     this.authService.authState.subscribe((user) => {
       this.user = user;
@@ -36,29 +36,24 @@ export class LoginComponent implements OnInit {
 
 
   signInWithGoogle(): void {
-    this.dis=true;
-      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID, this.googleLoginOptions ).then((data) => {
-        this.authService.authState.subscribe((user) => {
-          this.userAuth.userFetch(user.firstName,user.email);
-          this.userAuth.getAuthStatusListener().subscribe(u=>{
-            this.loggedUser=u;
+    this.dis = true;
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID, this.googleLoginOptions).then((data) => {
+      this.authService.authState.subscribe((user) => {
+        this.userAuth.userFetch(user.name, user.email);
+        this.userAuth.getAuthStatusListener().subscribe(u => {
+          this.loggedUser = u;
 
-          })
-          this.loggedIn = (user != null);
         })
-        localStorage.setItem('google_auth', JSON.stringify(data));
-        this.router.navigateByUrl('dashboard').then();
-      }).catch(data => {
-        this.dis=false;
-        this.authService.signOut();
-        this.router.navigate(['login']);
-      });
-    }
-
-
-
-
-
+        this.loggedIn = (user != null);
+      })
+      localStorage.setItem('google_auth', JSON.stringify(data));
+      this.router.navigateByUrl('dashboard').then();
+    }).catch(data => {
+      this.dis = false;
+      this.authService.signOut();
+      this.router.navigate(['login']);
+    });
+  }
 
   signOut(): void {
     this.authService.signOut();

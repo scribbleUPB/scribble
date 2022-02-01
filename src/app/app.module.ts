@@ -21,7 +21,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatDatepickerModule} from '@angular/material/datepicker';
-import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
@@ -37,7 +36,8 @@ import { ViewComponent } from './poll-creation/view/view.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditComponent } from './poll-creation/edit/edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { Answer2Component } from './poll-creation/answer2/answer2.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +47,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     LoginComponent,
     ViewComponent,
     EditComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    Answer2Component,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +73,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     SocialLoginModule,
     HttpClientModule,
     NgbModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule
   ],
   providers: [
     {
@@ -84,9 +86,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
               //Id for Skynet
-              '531547908712-jsrg3foj9hh7gm273c22q59c7str88b6.apps.googleusercontent.com'
+              //'531547908712-jsrg3foj9hh7gm273c22q59c7str88b6.apps.googleusercontent.com'
               //Id for local work
-              //'531547908712-2q501cu5jaf3re251m9vqcqmccmfsch6.apps.googleusercontent.com'
+              '531547908712-2q501cu5jaf3re251m9vqcqmccmfsch6.apps.googleusercontent.com'
             )
           }
         ],

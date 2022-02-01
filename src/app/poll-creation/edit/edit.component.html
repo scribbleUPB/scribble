@@ -19,10 +19,9 @@
                                 </div>
                                 <div class="col-7">
                                     <label>Opciones</label>
-                                    <div *ngFor="let option of filteredOption; index as i">
-                                        <input class="form-control text-center" placeholder="Descripcion"
-                                            formControlName="textOptions">
-                                    </div>
+                                    <input *ngFor="let option of options; index as i" type="text"
+                                        class="form-control text-center" placeholder="Descripcion"
+                                        formControlName="textOptions">
                                 </div>
                             </div>
                             <div class="row">

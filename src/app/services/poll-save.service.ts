@@ -10,7 +10,10 @@ import { poll } from '../models/poll.model';
 })
 export class PollSaveService {
   private polls: poll[] = [];
+  private singlePoll!: poll
   private fetchPolls = new Subject<poll[]>();
+  private fetchSinglePoll = new Subject<poll>();
+
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -26,7 +29,10 @@ export class PollSaveService {
   }
 
   getPollById(id: any) {
-    return this.http.get(`${environment.apiUrl}poll-view/${id}`);
+    this.http.get<poll>(`${environment.apiUrl}poll/${id}`).subscribe(p => {
+      this.singlePoll = p
+      this.fetchSinglePoll.next(this.singlePoll)
+    });
   }
 
   deletePollById(id: any) {
@@ -35,6 +41,10 @@ export class PollSaveService {
 
   patchPollById(id: any, form: any) {
     return this.http.patch(`${environment.apiUrl}poll-edit/${id}`, form)
+  }
+  
+  getSingleListener() {
+    return this.fetchSinglePoll.asObservable()
   }
 
   // saveTextPoll(poll:poll){

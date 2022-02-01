@@ -17,11 +17,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.authService.authState.subscribe((user) => {
-      this.userAuth.userFetch(user.firstName, user.email);
+      this.userAuth.userFetch(user.name, user.email);
       this.userAuth.getAuthStatusListener().subscribe(u => {
         this.loggedUser = u;
-        console.log(u)
-
       })
     })
 
@@ -35,7 +33,6 @@ export class HeaderComponent implements OnInit {
       this.router.navigateByUrl('login').then();
     }
 
-    console.log(this.loggedUser)
 
   }
 

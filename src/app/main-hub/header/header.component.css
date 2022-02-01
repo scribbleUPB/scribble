@@ -51,3 +51,12 @@ p:disabled{
 
 
 }
+
+@media (max-width: 600px) {
+
+.invis { display: none !important; }
+
+.create{
+  max-width: 50px !important;
+}
+}

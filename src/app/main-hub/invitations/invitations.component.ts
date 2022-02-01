@@ -1,33 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { poll } from 'src/app/models/poll.model';
 import { Router } from '@angular/router';
 import { PollSaveService } from 'src/app/services/poll-save.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-invitations',
   templateUrl: './invitations.component.html',
   styleUrls: ['./invitations.component.css']
 })
-export class InvitationsComponent implements OnInit {
+export class InvitationsComponent implements OnInit, OnDestroy {
+  private user!: SocialUser
   private loggedUser!: User
   userPolls: poll[] = []
-
+  private loggedSub!: Subscription
   constructor(
     private userAuth: UserAuthService,
     private router: Router,
     private pollService: PollSaveService,
-    private modalService: NgbModal,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private modalService: NgbModal
+
   ) { }
+  ngOnDestroy() {
+    this.loggedSub.unsubscribe()
+  }
 
   ngOnInit(): void {
-    this.userAuth.getAuthStatusListener().subscribe(u => {
-      console.log(u)
+    const storage = localStorage.getItem('google_auth')
+
+    if (storage) {
+      this.user = JSON.parse(storage);
+      this.userAuth.userFetch(this.user.name, this.user.email)
+    } else {
+      console.error('not working');
+      this.router.navigateByUrl('login').then();
+    }
+
+
+
+    this.loggedSub = this.userAuth.getAuthStatusListener().subscribe(u => {
       this.loggedUser = u;
       this.userPolls = this.loggedUser.ownedPolls.concat(this.loggedUser.invitedPolls)
     })
@@ -61,11 +78,29 @@ export class InvitationsComponent implements OnInit {
 
 
   setSelected(s: string) {
-    this.selected = s;
+
+
+
+    if (s === 'All') {
+
+      this.userPolls = this.loggedUser.ownedPolls.concat(this.loggedUser.invitedPolls)
+      this.selected = 'All'
+    } else if (s === 'Sent') {
+      this.userPolls = this.loggedUser.ownedPolls
+      this.selected = 'Sent'
+
+    } else {
+      this.userPolls = [...this.loggedUser.invitedPolls]
+      this.selected = 'Received'
+
+    }
   }
 
-  hasNoResult() {
-    return this.polls.filter(p => p.name.toLowerCase().includes(this.inputValue.toLowerCase())).length === 0;
+  hasNoResult(search: HTMLInputElement) {
+    if (this.inputValue !== "") {
+      return this.userPolls.filter(p => p.title.toLowerCase().includes(this.inputValue.toLowerCase())).length === 0;
+    }
+    return false;
   }
 
   goView(id: any) {

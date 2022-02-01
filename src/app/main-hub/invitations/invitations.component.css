@@ -109,6 +109,7 @@ section:active{
   flex-direction: row;
   justify-content: flex-start;
   margin: 1em 0;
+  width: 100%;
 }
  h4{
   font-family: 'Raleway', sans-serif;
@@ -148,10 +149,55 @@ h5{
 }
 .redN{
   color: red;
+  margin-right: 50%;
+
 }
 .greeN {
   color: #9AE66E;
 }
 .yellowN {
-  color: #ffc600;
+  color: #30475E;
+}
+
+@media (max-width: 600px) {
+  main{
+    width: 100%;
+    margin: 0;
+    padding: 2em;
+    min-height: 200px;
+    background-color: white;
+    border: 1px solid rgb(201, 201, 201);
+    border-radius: 4px;
+
+}
+.bus{
+  padding: 0;
+  margin: 0;
+}
+.invis { display: none !important; }
+
+
+
+}
+.action-buttons{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  align-self: flex-end;
+  height: max-content;
+
+}
+.bus{
+  height: max-content;
+  position: relative;
+  z-index: 10;
+  min-height: 120px;
+  padding: 0 0.5em;
+}
+
+.clickable{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
 }
