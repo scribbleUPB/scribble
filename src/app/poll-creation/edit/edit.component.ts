@@ -14,7 +14,6 @@ import { PollSaveService } from 'src/app/services/poll-save.service';
 export class EditComponent implements OnInit {
 
   options: any[] = [];
-  filteredOption!: any
 
   constructor(private activeRouter: ActivatedRoute,
     private router: Router, private pollService: PollSaveService,
@@ -40,12 +39,11 @@ export class EditComponent implements OnInit {
     this.pollService.getSingleListener().subscribe((data: any) => {
       this.pollData = data;
       console.log(data)
-      this.filteredOption = this.pollData.textOptions?.filter(o => o.content !== '');
       this.editPoll.setValue({
         'title': this.pollData.title,
         'description': this.pollData.description,
-        'calendarOptions': this.pollData.calendarOptions,
-        'textOptions': this.filteredOption,
+        'calendarOptions': this.pollData.calendarOptions?.map(d => d.day && d.times),
+        'textOptions': this.pollData.textOptions?.map(o => o.content),
         'needBe': this.pollData.needBe,
         'numberVote': this.pollData.numberVote,
         'singleVote': this.pollData.singleVote,
@@ -53,7 +51,7 @@ export class EditComponent implements OnInit {
         'deadline': this.pollData.deadline
       });
       console.log(this.editPoll.value);
-      console.log(this.options)
+      console.log(this.options);
     })
   }
 

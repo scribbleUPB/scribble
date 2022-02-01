@@ -8,24 +8,23 @@
                         <div class="form-group text-center">
                             <div class="row">
                                 <div class="col-5">
-                                    <label>Titulo</label>
+                                    <label>Title</label>
                                     <input type="text" class="form-control text-center" placeholder="Titulo"
                                         formControlName="title">
                                     <br>
-                                    <label>Descripcion</label>
+                                    <label>Description</label>
                                     <input type="text" class="form-control text-center" placeholder="Descripcion"
                                         formControlName="description">
                                     <br>
                                 </div>
                                 <div class="col-7">
-                                    <label>Opciones</label>
-                                    <input *ngFor="let option of options; index as i" type="text"
-                                        class="form-control text-center" placeholder="Descripcion"
+                                    <label>Poll Options</label>
+                                    <input type="text" class="form-control text-center" placeholder="Description"
                                         formControlName="textOptions">
                                 </div>
                             </div>
                             <div class="row">
-                                <label>Configuracion de la encuesta</label>
+                                <label>Poll Configuration</label>
                                 <section class="checks">
                                     <mat-checkbox labelPosition='before' #needBe formControlName="needBe">Yes, no, if
                                         need be </mat-checkbox>
@@ -58,32 +57,19 @@
                                         votes is allowed</p>
                                 </section>
                             </div>
-                            <div class="row">
-                                <label>Respuestas de la encuesta</label>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col text-start">
-                                <button class="btn btn-danger" routerLink="/dashboard">Cancelar</button>
+                                <button class="btn btn-danger" routerLink="/dashboard">Cancel</button>
                             </div>
                             <div class="col text-end">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="card-footer text-center">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-3 col-sm-4 text-center">
-                            Made with <i class="bi bi-heart-fill red"></i> in Bolivia
-                        </div>
-                        <div class="col-5 col-sm-4 text-center">
-                            <h2>Scribble</h2>
-                        </div>
-                        <div class="col-3 col-sm-4 text-center">
-                            Tiempo de creacion
-                        </div>
-                    </div>
+                    Made with <i class="bi bi-heart-fill red"></i> in Boliva
                 </div>
             </div>
         </div>

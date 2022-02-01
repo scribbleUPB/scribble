@@ -58,18 +58,18 @@
               <ng-template #content let-modal class="modalContainer">
                 <div class="modal-header">
                   <h4 class="modal-title" id="modal-basic-title">
-                    Eliminar la encuesta
+                    Delete poll
                   </h4>
                   <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                     <i class="bi bi-x m-lg"></i>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <p>¿ Esta seguro de eliminar la encuesta ?</p>
+                  <p> Are your sure to delete this poll ?</p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-danger" (click)="modal.close(poll._id)">
-                    Eliminar
+                    Delete
                   </button>
                 </div>
               </ng-template>

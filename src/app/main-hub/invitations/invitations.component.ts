@@ -126,7 +126,7 @@ export class InvitationsComponent implements OnInit, OnDestroy {
   }
 
   openSnackBar() {
-    this._snackBar.open('Se elimino la encuesta', 'X', {
+    this._snackBar.open('Poll has been deleted', 'X', {
       duration: 3000,
       panelClass: 'delete',
       horizontalPosition: 'center',
