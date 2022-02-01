@@ -26,7 +26,7 @@
       <section *ngIf="poll.title.toLowerCase().includes(inputValue.toLowerCase())">
         <div class="row">
           <div class="clickable">
-            <div class="cont" (click)="goView(poll._id)">
+            <div class="cont" (click)="goAnswer(poll._id)">
               <div class="name">
                 <p class="content">{{poll.creator[0].toUpperCase()}}</p>
               </div>
@@ -45,7 +45,7 @@
               </div>
             </div>
             <div class="action-buttons">
-              <button class="btn btn-lg btn-sm greeN" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver"><i
+              <button mat-button class="bus greeN" data-bs-toggle="tooltip" data-bs-placement="top" ><i
                 class="bi bi-newspaper fs-4" (click)="goView(poll._id)"></i></button>
               <button mat-button class="bus yellowN" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
                 (click)="goEdit(poll._id)"><i class="bi bi-pencil fs-4"></i></button>

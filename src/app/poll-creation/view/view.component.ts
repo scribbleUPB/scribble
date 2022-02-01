@@ -18,7 +18,7 @@ export class ViewComponent implements OnInit {
   ngOnInit(): void {
     let pollId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(pollId);
-    this.pollService.getPollById(pollId).subscribe(data => {
+    this.pollService.getPollById2(pollId).subscribe(data => {
       console.log(data);
       this.dataPoll = data;
     })

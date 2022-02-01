@@ -29,10 +29,14 @@ export class PollSaveService {
   }
 
   getPollById(id: any) {
-    this.http.get<poll>(`${environment.apiUrl}poll/${id}`).subscribe(p => {
+    return this.http.get<poll>(`${environment.apiUrl}poll/${id}`).subscribe(p => {
       this.singlePoll = p
       this.fetchSinglePoll.next(this.singlePoll)
     });
+  }
+
+  getPollById2(id: any) {
+    return this.http.get(`${environment.apiUrl}poll-view/${id}`);
   }
 
   deletePollById(id: any) {

@@ -107,6 +107,10 @@ export class InvitationsComponent implements OnInit, OnDestroy {
     this.router.navigate(['poll-view', id]);
   }
 
+  goAnswer(id: any){
+    this.router.navigate(['answer', id]);
+  }
+
   goEdit(id: any) {
     this.router.navigate(['poll-edit', id]);
   }
