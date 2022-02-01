@@ -10,6 +10,8 @@ import { User } from 'src/app/models/user.model';
 import { AnswerService } from 'src/app/services/answer.service';
 import { PollSaveService } from 'src/app/services/poll-save.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
+import { Location } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-answer2',
@@ -44,11 +46,14 @@ export class Answer2Component implements OnInit {
   calendarHeaders: string[] = []
   calenPoll: boolean = false;
   creatorMode: boolean = false;
+  votes: number[] = []
+  showV: boolean = false;
+  hiddenPoll: boolean = false;
 
 
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private pollService: PollSaveService, private userAuth: UserAuthService,
-    private answerService: AnswerService) { }
+    private answerService: AnswerService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     let pollId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -61,6 +66,10 @@ export class Answer2Component implements OnInit {
       if (this.dataPoll === null) {
         this.router.navigateByUrl('**').then();
       } else if (this.dataPoll._id) {
+        if (this.dataPoll.hidden) {
+          this.hiddenPoll = true;
+        }
+
         if (this.dataPoll.calendarOptions) {
           this.calenPoll = true;
           this.calenOptions = [...this.dataPoll.calendarOptions]
@@ -80,10 +89,13 @@ export class Answer2Component implements OnInit {
           this.showHeader = false;
         } else {
           this.user = JSON.parse(this.storage);
+          if (this.dataPoll.creator === this.user.email) {
+            this.showInvite = true
+          }
           this.userAuth.userFetch(this.user.name, this.user.email)
           this.loggedSub = this.userAuth.getAuthStatusListener().subscribe(u => {
             this.loggedUser = u;
-            if (this.loggedUser.email === this.dataPoll.creator) {
+            if (this.user.email === this.dataPoll.creator) {
               this.creatorMode = true;
             }
           })
@@ -132,6 +144,7 @@ export class Answer2Component implements OnInit {
 
 
                 for (let j = 0; j < this.calendarHeaders.length; j++) {
+
                   if (this.answers.responses[i].responses[j] === 'checked') {
                     o.push('bi bi-check-all')
                     t.push(0)
@@ -150,7 +163,6 @@ export class Answer2Component implements OnInit {
                 o = []
                 t = []
               }
-
 
 
 
@@ -173,6 +185,8 @@ export class Answer2Component implements OnInit {
 
 
                 for (let j = 0; j < this.dataPoll.textOptions.length; j++) {
+
+
                   if (this.answers.responses[i].responses[j] === 'checked') {
                     o.push('bi bi-check-all')
                     t.push(0)
@@ -186,12 +200,36 @@ export class Answer2Component implements OnInit {
 
 
                 }
+
                 this.icon.push(o)
                 this.updateIcon.push(t)
                 o = []
                 t = []
               }
+              if (this.updateIcon.length > 0) {
+                this.votes = []
+
+                console.log(this.updateIcon)
+                for (var i = 0; i < this.updateIcon.length; i++) {
+                  for (var j = 0; j < this.updateIcon[i].length; j++) {
+                    let val = 0;
+                    if (this.updateIcon[i][j] == 0) {
+                      val = 1
+                    } else if (this.updateIcon[i][j] == 1) {
+                      val = 1
+                    } else if (this.updateIcon[i][j] == 2) {
+                      val = 0
+                    }
+                    this.votes[j] = (this.votes[j] || 0) + val;
+
+                  }
+                }
+                console.log(this.votes)
+              }
+
+
             }
+
 
 
 
@@ -209,7 +247,7 @@ export class Answer2Component implements OnInit {
                 let t = []
                 for (let e of this.calendarHeaders) {
                   o.push('')
-                  t.push(0)
+                  t.push(2)
                 }
                 firstResponse.responses.push('empty')
 
@@ -226,7 +264,7 @@ export class Answer2Component implements OnInit {
                 let t = []
                 for (let e of this.dataPoll.textOptions) {
                   o.push('')
-                  t.push(0)
+                  t.push(2)
                 }
                 firstResponse.responses.push('empty')
 
@@ -235,6 +273,7 @@ export class Answer2Component implements OnInit {
                 o = []
                 t = []
               }
+
             }
             if (this.storage) {
               this.user = JSON.parse(this.storage);
@@ -254,13 +293,35 @@ export class Answer2Component implements OnInit {
             }
           }
         })
+
       }
 
     })
+
   }
 
 
   triggerIcon(indexj: number, indexi: number) {
+    if (this.updateIcon.length > 0) {
+      this.votes = []
+
+      console.log(this.updateIcon)
+      for (var i = 0; i < this.updateIcon.length; i++) {
+        for (var j = 0; j < this.updateIcon[i].length; j++) {
+          let val = 0;
+          if (this.updateIcon[i][j] == 0) {
+            val = 1
+          } else if (this.updateIcon[i][j] == 1) {
+            val = 1
+          } else if (this.updateIcon[i][j] == 2) {
+            val = 0
+          }
+          this.votes[j] = (this.votes[j] || 0) + val;
+
+        }
+      }
+      console.log(this.votes)
+    }
     this.enableSave = true;
     if (indexj == this.index || this.creatorMode) {
       if (this.icon[indexj][indexi] === 'bi bi-check') {
@@ -280,6 +341,26 @@ export class Answer2Component implements OnInit {
 
       }
     }
+    if (this.updateIcon.length > 0) {
+      this.votes = []
+
+      console.log(this.updateIcon)
+      for (var i = 0; i < this.updateIcon.length; i++) {
+        for (var j = 0; j < this.updateIcon[i].length; j++) {
+          let val = 0;
+          if (this.updateIcon[i][j] == 0) {
+            val = 1
+          } else if (this.updateIcon[i][j] == 1) {
+            val = 1
+          } else if (this.updateIcon[i][j] == 2) {
+            val = 0
+          }
+          this.votes[j] = (this.votes[j] || 0) + val;
+
+        }
+      }
+      console.log(this.votes)
+    }
   }
 
   onSave() {
@@ -294,12 +375,43 @@ export class Answer2Component implements OnInit {
 
   }
 
+  showVotes() {
+    if (this.updateIcon.length > 0) {
+      this.showV = !this.showV
 
-  onUpdate() {
-    //console.log(this.answers.responses)
-    //this.answerService.updateAnswer(this.answers)
+      this.votes = []
+
+      console.log(this.updateIcon)
+      for (var i = 0; i < this.updateIcon.length; i++) {
+        for (var j = 0; j < this.updateIcon[i].length; j++) {
+          let val = 0;
+          if (this.updateIcon[i][j] == 0) {
+            val = 1
+          } else if (this.updateIcon[i][j] == 1) {
+            val = 1
+          } else if (this.updateIcon[i][j] == 2) {
+            val = 0
+          }
+          this.votes[j] = (this.votes[j] || 0) + val;
+
+        }
+      }
+      console.log(this.votes)
+    }
 
   }
+  openSnackBar() {
+    this._snackBar.open('The Link was copied to the Clipboard', 'close', {
+      duration: 1000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
+  }
+
+  copyLink() {
+    return window.location.href
+  }
+
 
 }
 

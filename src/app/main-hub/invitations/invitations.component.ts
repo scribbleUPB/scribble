@@ -107,7 +107,7 @@ export class InvitationsComponent implements OnInit, OnDestroy {
     this.router.navigate(['poll-view', id]);
   }
 
-  goAnswer(id: any){
+  goAnswer(id: any) {
     this.router.navigate(['answer', id]);
   }
 
@@ -119,6 +119,8 @@ export class InvitationsComponent implements OnInit, OnDestroy {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.pollService.deletePollById(result).subscribe((data) => {
         console.log(data);
+        this.userAuth.userFetch(this.user.name, this.user.email)
+
       })
       this.ngOnInit()
       this.openSnackBar()

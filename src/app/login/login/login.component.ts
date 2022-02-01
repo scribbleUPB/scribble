@@ -21,6 +21,13 @@ export class LoginComponent implements OnInit {
   constructor(private authService: SocialAuthService, private router: Router, private userAuth: UserAuthService) { }
 
   ngOnInit(): void {
+    const storage = localStorage.getItem('google_auth')
+    if (storage) {
+      this.router.navigateByUrl('dashboard').then();
+
+    }
+
+
     this.dis = false;
 
     this.authService.authState.subscribe((user) => {

@@ -49,14 +49,16 @@ export class FirstScreenComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.userAuth.getAuthStatusListener().subscribe(u => {
-      this.loggedUser = u;
-    })
+
 
     const storage = localStorage.getItem('google_auth')
 
     if (storage) {
       this.user = JSON.parse(storage);
+      this.userAuth.userFetch(this.user.name, this.user.email)
+      this.userAuth.getAuthStatusListener().subscribe(u => {
+        this.loggedUser = u;
+      })
     } else {
       console.error('not working');
       this.router.navigateByUrl('login').then();
@@ -234,6 +236,7 @@ export class FirstScreenComponent implements OnInit, OnDestroy {
         invitees: []
       }
       this.pollService.savePoll(calendarPoll, this.user.email);
+      this.userAuth.userFetch(this.user.name, this.user.email)
 
     }
 

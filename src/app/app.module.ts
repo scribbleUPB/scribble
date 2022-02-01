@@ -11,20 +11,20 @@ import { NgxMultipleDatesModule } from 'ngx-multiple-dates'; // module import
 //material
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderComponent } from './main-hub/header/header.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatStepperModule} from '@angular/material/stepper';
-import { MatDatepickerModule} from '@angular/material/datepicker';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatCardModule} from '@angular/material/card';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 //
 import { HttpClientModule } from '@angular/common/http';
 
@@ -38,6 +38,7 @@ import { EditComponent } from './poll-creation/edit/edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MatTableModule } from '@angular/material/table';
 import { Answer2Component } from './poll-creation/answer2/answer2.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import { Answer2Component } from './poll-creation/answer2/answer2.component';
     HttpClientModule,
     NgbModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    ClipboardModule
   ],
   providers: [
     {

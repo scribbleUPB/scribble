@@ -120,3 +120,7 @@ input:disabled {
   text-align: center;
   text-decoration: none;
 }
+
+.score{
+  font-weight: 100;
+}
