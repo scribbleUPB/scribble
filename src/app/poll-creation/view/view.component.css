@@ -1,0 +1,25 @@
+.red {
+    color: red;
+}
+.black {
+    background-color: #30475e;
+}
+.white {
+    color: white;
+}
+.button-solid {
+    border: none;
+}
+button-solid:focus {
+    border: none;
+    outline: none;
+}
+.greeN {
+    color: #9AE66E;
+}
+.yellowN {
+    color: #ffc600;
+}
+.grey {
+    background-color: #E8E8E8;
+}

@@ -1,0 +1,136 @@
+<main>
+  <button mat-flat-button class="logo" routerLink="/dashboard" routerLinkActive="active"><span class="title">Scribble</span></button>
+  <!-- <div class="heading">
+    <h2>STEP 1 OF 4</h2>
+    <h1>What's the ocassion?</h1>
+  </div> -->
+  <!-- <form > -->
+  <mat-stepper orientation="vertical" #stepper linear>
+    <mat-step [stepControl]="firstFormGroup" [editable]="true" >
+      <form [formGroup]="firstFormGroup">
+      <ng-template class="head" matStepLabel><h1>What's the ocassion?</h1></ng-template>
+      <ng-template matStepContent>
+        <div class="name">
+          <mat-form-field class="titleInput" >
+            <mat-label>Enter Poll Title </mat-label>
+            <input matInput required formControlName="firstCtrl" >
+          </mat-form-field>
+          <mat-form-field class="titleInput" >
+            <mat-label>Enter Note (optional) </mat-label>
+            <input matInput #description formControlName="secondCtrl" >
+          </mat-form-field>
+        </div>
+        <button mat-button matStepperNext>Next</button>
+      </ng-template>
+    </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel><h1>What are the options?</h1></ng-template>
+      <ng-template matStepContent>
+        <div >
+          <mat-tab-group mat-align-tabs="center" animationDuration="0ms">
+            <mat-tab label="Month" [disabled]="options.length>1 || options[0].content!='' ">
+              <div class="month">
+
+                <mat-card class="demo-inline-calendar-card">
+                  <mat-calendar  [selected]="selected" #cal (selectedChange)="onSelect($event)" [dateClass]="dateClass()" ></mat-calendar>
+
+                </mat-card>
+                <mat-card class="times">
+                  <div *ngFor="let d of fullerDates;let j = index">
+                    <p class="day">{{d.day| date }}  </p>
+                    <div class="hours" >
+                      <div class="hourSelection" *ngFor="let item of d.times; let i = index">
+                        <mat-form-field  class="timeEntry">
+                          <mat-label>Start time</mat-label>
+                          <input matInput type="time" name="start" id="start" class="clock" #start (change)="setTimeStart(start,j,i)" [value]="item.start">
+                        </mat-form-field>
+                        <mat-form-field   class="timeEntry">
+                          <mat-label>End time</mat-label>
+                          <input matInput type="time" name="end" class="clock" id="end" #end (change)="setTimeEnd(end,j,i)" [value]="item.end">
+                        </mat-form-field>
+                        <button mat-flat-button (click)="deleteHour(j,i)"> <mat-icon>delete</mat-icon></button>
+
+                        <!-- <p>{{item.start}}</p>
+                        <p>{{item.end}}</p> -->
+
+                      </div>
+                      <button mat-raised-button class="add" (click)="addTime(j)"> + Add more times</button>
+                    </div>
+                  </div>
+                  <!-- <p *ngFor="let item of fullerDates">{{item.day}} times:<span *ngFor="let e of item.times">{{e.start}} / {{e.end}}</span></p> -->
+
+
+                </mat-card>
+                <!--  -->
+              </div>
+            </mat-tab>
+            <mat-tab label="Text" [disabled]="fullerDates.length>0  ">
+              <div class="text-content">
+                <!-- <div class="text-row">
+                  <h6>1</h6>
+                  <mat-form-field  class="textEntry">
+                    <mat-label>Option</mat-label>
+                    <input matInput type="text" name="option" id="option" [(ngModel)]="options[0]">
+                  </mat-form-field>
+                  <button mat-flat-button *ngIf="options.length>0" (click)="options.splice(0,1)"> <mat-icon>delete</mat-icon></button>
+                </div> -->
+
+              <div class="text-options" *ngFor="let option of options; let i = index; ">
+                  <div class="text-row">
+                    <h6>{{i+1}}</h6>
+                    <mat-form-field  class="textEntry">
+                      <mat-label>Add option</mat-label>
+                      <input matInput type="text" name="option" id="option"  #opt (change)="setOptionContent(opt,i)" [value]="options[i].content">
+                    </mat-form-field>
+                    <button mat-flat-button (click)="deleteOption(i)" *ngIf="options.length>1"> <mat-icon>delete</mat-icon></button>
+                  </div>
+              </div>
+              <button mat-flat-button class="addO" (click)="addOption('')"> + Add more options</button>
+            </div>
+            <p *ngFor="let option of options ">*{{option.content}}</p>
+            </mat-tab>
+
+          </mat-tab-group>
+
+        </div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </ng-template>
+    </mat-step>
+    <mat-step *ngIf="(options.length>1 || options[0].content!='') ||  fullerDates.length>0 ">
+      <ng-template matStepLabel><h1>Poll settings</h1></ng-template>
+      <ng-template matStepContent>
+      <div>
+        <section class="checks">
+          <form #checked [formGroup]="secondFormGroup">
+            <mat-checkbox labelPosition='before' #needBe formControlName="needBeCtrl">Yes, no, if need be </mat-checkbox>
+
+            <p class="desc">Participants can indicate if an option is not ideal for them.</p>
+            <mat-checkbox labelPosition='before' #numberVote formControlName="numberCtrl">Limit the number of votes per option </mat-checkbox>
+
+            <p class="desc">First come, first served. Once the spots are filled, the option is no longer available.</p>
+
+            <mat-checkbox labelPosition='before' #singleVote formControlName="singleCtrl">Limit participants to a single vote </mat-checkbox>
+
+            <p class="desc">Participants can only select one option.</p>
+
+            <mat-checkbox labelPosition='before' #hidden formControlName="hiddenCtrl">Hidden poll </mat-checkbox>
+
+            <p class="desc">Participants’ names, comments and votes are confidential. Only you can see the results.</p>
+
+            <mat-checkbox labelPosition='before' #deadline formControlName="deadlineCtrl">Set Deadline </mat-checkbox>
+
+            <p class="desc">Set a deadline to receive votes in time. After the deadline, no more votes is allowed</p>
+          </form>
+
+        </section>
+      </div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="createPoll()">Create Poll</button>
+
+    </ng-template>
+    </mat-step>
+  </mat-stepper>
+<!-- </form> -->
+</main>

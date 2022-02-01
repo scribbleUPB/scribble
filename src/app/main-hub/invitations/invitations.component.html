@@ -1,0 +1,88 @@
+<app-header></app-header>
+<main>
+  <div class="topbar">
+    <h2>Invitations</h2>
+    <div class="topbar">
+      <button class="drop" mat-button [matMenuTriggerFor]="menu">
+        <p>{{selected}}<mat-icon>arrow_drop_down</mat-icon>
+        </p>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="setSelected('All')">All</button>
+        <button mat-menu-item (click)="setSelected('Sent')">Sent</button>
+        <button mat-menu-item (click)="setSelected('Received')">Received</button>
+
+        <!-- <button mat-menu-item>Item 2</button> -->
+      </mat-menu>
+      <span class="spacer"></span>
+      <div class="search">
+        <input type="text" #search [(ngModel)]="inputValue">
+        <mat-icon class="searchButton">search</mat-icon>
+      </div>
+    </div>
+  </div>
+  <div class="invites">
+    <div *ngFor="let poll of userPolls.reverse()">
+      <section *ngIf="poll.title.toLowerCase().includes(inputValue.toLowerCase())">
+        <div class="row">
+          <div class="clickable">
+            <div class="cont" (click)="goAnswer(poll._id)">
+              <div class="name">
+                <p class="content">{{poll.creator[0].toUpperCase()}}</p>
+              </div>
+              <div class="info">
+                <h4>{{poll.title}}</h4>
+                <h5 *ngIf="poll.calendarOptions && poll.calendarOptions.length>0">
+                  <mat-icon class="bottom">calendar_today</mat-icon> {{poll.calendarOptions.length}} options
+                </h5>
+                <h5 *ngIf="poll.textOptions && poll.textOptions.length>0">
+                  <mat-icon class="bottom">calendar_today</mat-icon> {{poll.textOptions.length}} options
+                </h5>
+
+                <h5>
+                  <mat-icon class="bold, bottom">people</mat-icon> {{poll.invitees.length}} invitees
+                </h5>
+              </div>
+            </div>
+            <div class="action-buttons">
+              <button mat-button class="bus yellowN" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
+                (click)="goEdit(poll._id)"><i class="bi bi-pencil fs-4"></i></button>
+              <button mat-button class=" bus redN " data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar"
+                (click)="deletePoll(content)"><i class="bi bi-trash fs-4"></i></button>
+            </div>
+          </div>
+          <div class="col-2 col-sm-2">
+            <div>
+
+
+              <ng-template #content let-modal class="modalContainer">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">
+                    Eliminar la encuesta
+                  </h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <i class="bi bi-x m-lg"></i>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>¿ Esta seguro de eliminar la encuesta ?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-danger" (click)="modal.close(poll._id)">
+                    Eliminar
+                  </button>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div *ngIf="hasNoResult(search)">
+      <h5>There are no results matching your filter.</h5>
+    </div>
+    <div *ngIf="userPolls.length<1" class="text-center">
+      <h5>You have no polls yet.</h5>
+    </div>
+  </div>
+</main>

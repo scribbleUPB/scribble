@@ -1,0 +1,29 @@
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #e8e8e8;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(48, 71, 94, 1), #F05454);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(48, 71, 94, 1), rgba(240, 84, 84, 1));
+}
+.smallImg {
+  height: 70%;
+  width: 70%;
+}
+
+h3{
+  font-family: 'Raleway', sans-serif;
+}
+h4{
+  font-family: 'Raleway', sans-serif;
+  font-style: italic;
+}
+button{
+  font-family: 'Raleway', sans-serif;
+  background-color: #F05454;
+
+}
+
+

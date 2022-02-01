@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    <div class="row align-items-center vh-100">
+        <div class="col-sm col">
+            <div class="card shadow border">
+                <app-header></app-header>
+                <div class="card-body d-flex flex-column align-items-center">
+                    <form [formGroup]="editPoll" (ngSubmit)="patchPoll()">
+                        <div class="form-group text-center">
+                            <div class="row">
+                                <div class="col-5">
+                                    <label>Titulo</label>
+                                    <input type="text" class="form-control text-center" placeholder="Titulo"
+                                        formControlName="title">
+                                    <br>
+                                    <label>Descripcion</label>
+                                    <input type="text" class="form-control text-center" placeholder="Descripcion"
+                                        formControlName="description">
+                                    <br>
+                                </div>
+                                <div class="col-7">
+                                    <label>Opciones</label>
+                                    <input *ngFor="let option of options; index as i" type="text"
+                                        class="form-control text-center" placeholder="Descripcion"
+                                        formControlName="textOptions">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label>Configuracion de la encuesta</label>
+                                <section class="checks">
+                                    <mat-checkbox labelPosition='before' #needBe formControlName="needBe">Yes, no, if
+                                        need be </mat-checkbox>
+
+                                    <p class="desc">Participants can indicate if an option is not ideal for them.</p>
+                                    <mat-checkbox labelPosition='before' #numberVote formControlName="numberVote">Limit
+                                        the
+                                        number of votes per option </mat-checkbox>
+
+                                    <p class="desc">First come, first served. Once the spots are filled, the option is
+                                        no
+                                        longer available.</p>
+
+                                    <mat-checkbox labelPosition='before' #singleVote formControlName="singleVote">Limit
+                                        participants to a single vote </mat-checkbox>
+
+                                    <p class="desc">Participants can only select one option.</p>
+
+                                    <mat-checkbox labelPosition='before' #hidden formControlName="hidden">Hidden poll
+                                    </mat-checkbox>
+
+                                    <p class="desc">Participants’ names, comments and votes are confidential. Only you
+                                        can
+                                        see the results.</p>
+
+                                    <mat-checkbox labelPosition='before' #deadline formControlName="deadline">Set
+                                        Deadline </mat-checkbox>
+
+                                    <p class="desc">Set a deadline to receive votes in time. After the deadline, no more
+                                        votes is allowed</p>
+                                </section>
+                            </div>
+                            <div class="row">
+                                <label>Respuestas de la encuesta</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-start">
+                                <button class="btn btn-danger" routerLink="/dashboard">Cancelar</button>
+                            </div>
+                            <div class="col text-end">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-3 col-sm-4 text-center">
+                            Made with <i class="bi bi-heart-fill red"></i> in Bolivia
+                        </div>
+                        <div class="col-5 col-sm-4 text-center">
+                            <h2>Scribble</h2>
+                        </div>
+                        <div class="col-3 col-sm-4 text-center">
+                            Tiempo de creacion
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
