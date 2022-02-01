@@ -36,8 +36,10 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     let pollId = this.activeRouter.snapshot.paramMap.get('id');
     console.log(pollId);
-    this.pollService.getPollById2(pollId).subscribe((data: any) => {
+    this.pollService.getPollById(pollId)
+    this.pollService.getSingleListener().subscribe((data: any) => {
       this.pollData = data;
+      console.log(data)
       this.filteredOption = this.pollData.textOptions?.filter(o => o.content !== '');
       this.editPoll.setValue({
         'title': this.pollData.title,
