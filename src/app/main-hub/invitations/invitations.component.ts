@@ -120,6 +120,7 @@ export class InvitationsComponent implements OnInit, OnDestroy {
       this.pollService.deletePollById(result).subscribe((data) => {
         console.log(data);
       })
+      this.ngOnInit()
       this.openSnackBar()
     })
   }
