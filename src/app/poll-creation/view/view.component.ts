@@ -17,27 +17,21 @@ export class ViewComponent implements OnInit {
 
   ngOnInit(): void {
     let pollId = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(pollId);
     this.pollService.getPollById2(pollId).subscribe(data => {
-      console.log(data);
       this.dataPoll = data;
     })
   }
 
   triggerIcon(index: any) {
-    console.log(this.icon);
     if (this.icon === 'bi bi-check') {
       this.icon = 'bi bi-check-all';
       this.updateIcon = 0;
-      console.log('click ' + this.icon + this.updateIcon + index);
     } else if (this.icon === undefined || this.icon === '') {
       this.icon = 'bi bi-check';
       this.updateIcon = 1;
-      console.log('click ' + this.icon + this.updateIcon + index);
     } else {
       this.icon = '';
       this.updateIcon = 2;
-      console.log('click ' + this.icon + this.updateIcon + index);
     }
   }
 }

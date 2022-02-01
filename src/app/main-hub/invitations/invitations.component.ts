@@ -118,7 +118,6 @@ export class InvitationsComponent implements OnInit, OnDestroy {
   deletePoll(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.pollService.deletePollById(result).subscribe((data) => {
-        console.log(data);
         this.userAuth.userFetch(this.user.name, this.user.email)
 
       })

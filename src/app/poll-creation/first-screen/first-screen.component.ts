@@ -198,13 +198,6 @@ export class FirstScreenComponent implements OnInit, OnDestroy {
 
 
   createPoll() {
-    // console.log(this.firstFormGroup.controls['firstCtrl'].value)
-    // console.log(this.firstFormGroup.controls['secondCtrl'].value)
-    // console.log(this.secondFormGroup.controls['needBeCtrl'].value)
-    // console.log(this.secondFormGroup.controls['numberCtrl'].value)
-    // console.log(this.secondFormGroup.controls['singleCtrl'].value)
-    // console.log(this.secondFormGroup.controls['hiddenCtrl'].value)
-    // console.log(this.secondFormGroup.controls['deadlineCtrl'].value)
 
     if (this.options.length > 1 || this.options[0].content != '') {
       let filteredOptions = this.options.filter(o => o.content !== '');
@@ -222,7 +215,6 @@ export class FirstScreenComponent implements OnInit, OnDestroy {
       }
       this.pollService.savePoll(textpoll, this.user.email);
     } else {
-      console.log(this.fullerDates)
       let calendarPoll: poll = {
         creator: this.user.email,
         title: this.firstFormGroup.controls['firstCtrl'].value,

@@ -34,11 +34,9 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     let pollId = this.activeRouter.snapshot.paramMap.get('id');
-    console.log(pollId);
     this.pollService.getPollById(pollId)
     this.pollService.getSingleListener().subscribe((data: any) => {
       this.pollData = data;
-      console.log(data)
       this.editPoll.setValue({
         'title': this.pollData.title,
         'description': this.pollData.description,
@@ -50,8 +48,6 @@ export class EditComponent implements OnInit {
         'hidden': this.pollData.hidden,
         'deadline': this.pollData.deadline
       });
-      console.log(this.editPoll.value);
-      console.log(this.options);
     })
   }
 
@@ -59,7 +55,6 @@ export class EditComponent implements OnInit {
     this.pollService.patchPollById(this.activeRouter.snapshot.paramMap.get('id'),
       this.editPoll.value).subscribe(result => {
         if (!result) console.log('error');
-        console.log(result)
         this.router.navigate(['dashboard'])
         this.openSnackBar();
       })

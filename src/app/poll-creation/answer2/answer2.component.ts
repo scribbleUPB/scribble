@@ -57,7 +57,6 @@ export class Answer2Component implements OnInit {
 
   ngOnInit(): void {
     let pollId = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(pollId);
     this.pollService.getPollById(pollId)
     this.pollService.getSingleListener().subscribe(data => {
       this.dataPoll = data;
@@ -209,7 +208,6 @@ export class Answer2Component implements OnInit {
               if (this.updateIcon.length > 0) {
                 this.votes = []
 
-                console.log(this.updateIcon)
                 for (var i = 0; i < this.updateIcon.length; i++) {
                   for (var j = 0; j < this.updateIcon[i].length; j++) {
                     let val = 0;
@@ -224,7 +222,6 @@ export class Answer2Component implements OnInit {
 
                   }
                 }
-                console.log(this.votes)
               }
 
 
@@ -241,7 +238,6 @@ export class Answer2Component implements OnInit {
             let firstResponse: individualResp = { responses: [] }
 
             if (this.calendarHeaders.length > 0) {
-              console.log("s")
               for (let i = 0; i < this.calendarHeaders.length; i++) {
                 let o = []
                 let t = []
@@ -304,8 +300,6 @@ export class Answer2Component implements OnInit {
   triggerIcon(indexj: number, indexi: number) {
     if (this.updateIcon.length > 0) {
       this.votes = []
-
-      console.log(this.updateIcon)
       for (var i = 0; i < this.updateIcon.length; i++) {
         for (var j = 0; j < this.updateIcon[i].length; j++) {
           let val = 0;
@@ -320,7 +314,6 @@ export class Answer2Component implements OnInit {
 
         }
       }
-      console.log(this.votes)
     }
     this.enableSave = true;
     if (indexj == this.index || this.creatorMode) {
@@ -344,7 +337,6 @@ export class Answer2Component implements OnInit {
     if (this.updateIcon.length > 0) {
       this.votes = []
 
-      console.log(this.updateIcon)
       for (var i = 0; i < this.updateIcon.length; i++) {
         for (var j = 0; j < this.updateIcon[i].length; j++) {
           let val = 0;
@@ -359,14 +351,11 @@ export class Answer2Component implements OnInit {
 
         }
       }
-      console.log(this.votes)
     }
   }
 
   onSave() {
-    console.log(this.answers.responses)
     if (this.update && this.dataPoll._id) {
-      console.log(this.answers.responses)
       this.answerService.updateAnswer(this.dataPoll._id, this.answers.responses)
     } else {
       this.answerService.saveAnswer(this.answers)
@@ -381,7 +370,6 @@ export class Answer2Component implements OnInit {
 
       this.votes = []
 
-      console.log(this.updateIcon)
       for (var i = 0; i < this.updateIcon.length; i++) {
         for (var j = 0; j < this.updateIcon[i].length; j++) {
           let val = 0;
@@ -396,7 +384,6 @@ export class Answer2Component implements OnInit {
 
         }
       }
-      console.log(this.votes)
     }
 
   }
